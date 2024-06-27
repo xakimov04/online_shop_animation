@@ -68,23 +68,6 @@ class RoomPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Container(
-                  //   width: MediaQuery.of(context).size.width,
-                  //   clipBehavior: Clip.hardEdge,
-                  //   decoration: const BoxDecoration(
-                  //     color: Colors.black26,
-                  //   ),
-                  //   child: Center(
-                  //     child: Text(
-                  //       title,
-                  //       style: const TextStyle(
-                  //         color: Colors.white,
-                  //         fontWeight: FontWeight.bold,
-                  //         fontSize: 30,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -128,18 +111,10 @@ class RoomPage extends StatelessWidget {
                           ],
                         ),
                       )
-                      .slideY(begin: 0.080, end: 0.0),
+                      .slideY(begin: 0.030, end: 0.0)
+                      .fadeIn(),
                 ),
               ),
-              // const Expanded(
-              //   child: SingleChildScrollView(
-              //     child: Column(
-              //       children: [
-              //         ProductGrid(),
-              //       ],
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),
