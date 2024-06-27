@@ -19,7 +19,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ValueNotifier<int> _currentIndexNotifier = ValueNotifier<int>(0);
-  final ProductController _productController = ProductController();
 
   final List<Map<String, String>> _pageViewList = [
     {

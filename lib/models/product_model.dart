@@ -7,19 +7,19 @@ class ProductModel extends ChangeNotifier {
   double rating;
   double price;
   String firstColorImage;
-  String secondColorImage;
-  String thirdColorImage;
+ 
+  String productInfo;
   bool isLiked;
 
   ProductModel({
     required this.id,
     required this.title,
     required this.description,
+    required this.productInfo,
     required this.rating,
     required this.price,
     required this.firstColorImage,
-    required this.secondColorImage,
-    required this.thirdColorImage,
+   
     required this.isLiked,
   });
 }

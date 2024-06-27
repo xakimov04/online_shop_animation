@@ -46,6 +46,8 @@ class ProductItem extends StatelessWidget {
                         children: [
                           Text(
                             product.description,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -70,10 +72,13 @@ class ProductItem extends StatelessWidget {
                                   color: Colors.green,
                                 ),
                               ),
-                              const Icon(
-                                CupertinoIcons.heart_circle_fill,
-                                color: Color(0xffCCC5AD),
-                                size: 40,
+                              GestureDetector(
+                                onTap: () {},
+                                child: const Icon(
+                                  CupertinoIcons.heart_circle_fill,
+                                  color: Color(0xffCCC5AD),
+                                  size: 40,
+                                ),
                               ),
                             ],
                           ),
