@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:online_shop_animation/views/widgets/product_count.dart';
 import 'package:online_shop_animation/views/widgets/product_grid.dart';
 
@@ -23,32 +24,47 @@ class RoomPage extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               background: Stack(
                 children: [
-                  Container(
-                    height: 300,
-                    width: MediaQuery.of(context).size.width,
-                    clipBehavior: Clip.hardEdge,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(0),
-                    ),
-                    child: Image.network(
-                      image,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    clipBehavior: Clip.hardEdge,
-                    decoration: const BoxDecoration(
-                      color: Colors.black26,
-                    ),
-                    child: Center(
-                      child: Text(
-                        title,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
+                  Animate()
+                      .custom(
+                        duration: 500.milliseconds,
+                        begin: 10,
+                        end: 0,
+                        builder: (_, value, __) => Container(
+                          height: 300,
+                          width: MediaQuery.of(context).size.width,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(0),
+                          ),
+                          child: Image.network(
+                            image,
+                            fit: BoxFit.fill,
+                          ),
                         ),
+                      )
+                      .slideY(begin: -0.10, end: 0.0),
+                  Animate()
+                      .custom(
+                        duration: 500.milliseconds,
+                        begin: 10,
+                        end: 0,
+                        builder: (_, value, __) => Container(
+                          width: MediaQuery.of(context).size.width,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: const BoxDecoration(
+                            color: Colors.black26,
+                          ),
+                        ),
+                      )
+                      .slideY(begin: -0.10, end: 0.0),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
                       ),
                     ),
                   ),
@@ -66,19 +82,37 @@ class RoomPage extends StatelessWidget {
               size: 30,
             ),
           ),
-          body: const Column(
+          body: Column(
             children: [
-              SizedBox(
-                height: 60,
-                child: ProductCount(),
-              ),
+              Animate()
+                  .custom(
+                    duration: 1.seconds,
+                    begin: 10,
+                    end: 0,
+                    builder: (_, value, __) => const SizedBox(
+                      height: 80,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 15.0),
+                        child: ProductCount(),
+                      ),
+                    ),
+                  )
+                  .fadeIn(),
               Expanded(
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ProductGrid(),
-                    ],
-                  ),
+                  child: Animate()
+                      .custom(
+                        duration: 500.milliseconds,
+                        begin: 10,
+                        end: 0,
+                        builder: (_, value, __) => const Column(
+                          children: [
+                            ProductGrid(),
+                          ],
+                        ),
+                      )
+                      .slideY(begin: 0.030, end: 0.0)
+                      .fadeIn(),
                 ),
               ),
             ],

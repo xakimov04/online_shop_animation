@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:online_shop_animation/controller/product_controller.dart';
 import 'package:online_shop_animation/models/product_model.dart';
@@ -29,33 +30,72 @@ class ProductInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Container(
-          width: 270,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: const Color(0xff6D8D54),
-          ),
-          child: const Center(
-            child: Text(
-              "Add to Cart",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+        Animate()
+            .custom(
+              duration: 500.milliseconds,
+              begin: 10,
+              end: 0,
+              builder: (_, value, __) => Container(
+                width: 270,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: const Color(0xff6D8D54),
+                ),
+                child: const Center(
+                  child: Text(
+                    "Add to Cart",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
+            )
+            .slideY(begin: 0.20, end: 0.0)
+            .fadeIn(),
+        // Container(
+        //   width: 270,
+        //   height: 50,
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(10),
+        //     color: const Color(0xff6D8D54),
+        //   ),
+        //   child: const Center(
+        //     child: Text(
+        //       "Add to Cart",
+        //       style: TextStyle(
+        //         color: Colors.white,
+        //         fontSize: 20,
+        //         fontWeight: FontWeight.bold,
+        //       ),
+        //     ),
+        //   ),
+        // ),
         const Gap(10),
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const Icon(
-              CupertinoIcons.heart_circle_fill,
-              color: Color(0xffCCC5AD),
-              size: 55,
-            ),
+            Animate()
+                .custom(
+                  duration: 500.milliseconds,
+                  begin: 10,
+                  end: 0,
+                  builder: (_, value, __) => const Icon(
+                    CupertinoIcons.heart_circle_fill,
+                    color: Color(0xffCCC5AD),
+                    size: 55,
+                  ),
+                )
+                .slideY(begin: 0.20, end: 0.0)
+                .fadeIn(),
+            // const Icon(
+            //   CupertinoIcons.heart_circle_fill,
+            //   color: Color(0xffCCC5AD),
+            //   size: 55,
+            // ),
             const Gap(10),
             FloatingActionButton(
               shape: const CircleBorder(),
@@ -131,9 +171,21 @@ class _ProductDetailState extends State<ProductDetail> {
             onSelectColor: selectColor,
           ),
           const Gap(10),
-          _buildRatingAndReviews(),
-          _buildProductDescription(),
-          _buildProductInfo(),
+          Animate()
+              .custom(
+                duration: 500.milliseconds,
+                begin: 10,
+                end: 0,
+                builder: (_, value, __) => Column(
+                  children: [
+                    _buildRatingAndReviews(),
+                    _buildProductDescription(),
+                    _buildProductInfo(),
+                  ],
+                ),
+              )
+              .slideY(begin: 0.20, end: 0.0)
+              .fadeIn(),
         ],
       ),
     );
@@ -223,63 +275,80 @@ class ProductImage extends StatelessWidget {
       height: size.height / 2.5,
       child: Stack(
         children: [
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 200),
-            transitionBuilder: (Widget child, Animation<double> animation) {
-              return FadeTransition(
-                opacity: animation,
-                child: child,
-              );
-            },
-            child: Image.asset(
-              "assets/images/$selectedColorImage.png",
-              key: ValueKey<String>(selectedColorImage!),
-              height: size.height / 2.5,
-              width: size.width / 1.5,
-              fit: BoxFit.fill,
-            ),
-          ),
+          Animate()
+              .custom(
+                duration: 500.milliseconds,
+                begin: 10,
+                end: 0,
+                builder: (_, value, __) => AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 200),
+                  transitionBuilder:
+                      (Widget child, Animation<double> animation) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  },
+                  child: Image.asset(
+                    "assets/images/$selectedColorImage.png",
+                    key: ValueKey<String>(selectedColorImage!),
+                    height: size.height / 2.5,
+                    width: size.width / 1.5,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              )
+              .slideX(begin: -0.10, end: 0.0)
+              .fadeIn(),
           Positioned(
             right: 0,
             left: 150,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    product.title,
-                    style: const TextStyle(color: Color(0xffCCC5AD)),
-                  ),
-                  Text(
-                    product.description,
-                    textAlign: TextAlign.right,
-                    style: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+            child: Animate()
+                .custom(
+                  duration: 500.milliseconds,
+                  begin: 10,
+                  end: 0,
+                  builder: (_, value, __) => Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          product.title,
+                          style: const TextStyle(color: Color(0xffCCC5AD)),
+                        ),
+                        Text(
+                          product.description,
+                          textAlign: TextAlign.right,
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Gap(20),
+                        const Text(
+                          "Price",
+                          style: TextStyle(color: Color(0xffCCC5AD)),
+                        ),
+                        Text(
+                          "\$${product.price}",
+                          style: const TextStyle(
+                            color: Colors.green,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Gap(10),
+                        ColorOptions(
+                          onSelectColor: onSelectColor,
+                        ),
+                      ],
                     ),
                   ),
-                  const Gap(20),
-                  const Text(
-                    "Price",
-                    style: TextStyle(color: Color(0xffCCC5AD)),
-                  ),
-                  Text(
-                    "\$${product.price}",
-                    style: const TextStyle(
-                      color: Colors.green,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Gap(10),
-                  ColorOptions(
-                    onSelectColor: onSelectColor,
-                  ),
-                ],
-              ),
-            ),
+                )
+                .slideY(begin: 0.090, end: 0.0)
+                .fadeIn(),
           ),
         ],
       ),
