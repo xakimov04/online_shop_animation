@@ -20,7 +20,7 @@ class ProductItem extends StatelessWidget {
       String userUid = prefs.getString('uid') ?? '';
       ProductController controller =
           Provider.of<ProductController>(context, listen: false);
-      controller.addOrder(product.id, userUid);
+      controller.addOrder(product, userUid, userUid);
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Added to Cart')),

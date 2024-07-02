@@ -12,8 +12,8 @@ class ProductController extends ChangeNotifier {
   List<ProductModel> _products = [];
   List<ProductModel> get products => List.unmodifiable(_products);
 
-  final List<OrderModel> _order = [];
-  List<OrderModel> get order => List.unmodifiable(_order);
+  List<ProductModel> _order = [];
+  List<ProductModel> get order => List.unmodifiable(_order);
 
   ProductController() {
     _init();
@@ -23,6 +23,13 @@ class ProductController extends ChangeNotifier {
     _productFirebaseService.getProduct().listen((snapshot) {
       _products =
           snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
+      _orderService.getOrder().listen(
+        (snapshorOrder) {
+          _order = snapshorOrder.docs
+              .map((e) => ProductModel.fromSnapshot(e))
+              .toList();
+        },
+      );
       notifyListeners();
     });
   }
@@ -31,11 +38,11 @@ class ProductController extends ChangeNotifier {
       _productFirebaseService.getProduct().map((snapshot) =>
           snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList());
 
-  Stream<List<OrderModel>> get orderStream =>
+  Stream<List<ProductModel>> get orderStream =>
       _orderService.getOrder().map((snapshot) =>
-          snapshot.docs.map((doc) => OrderModel.fromSnapshot(doc)).toList());
+          snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList());
 
-  void addOrder(String productUid, String userUid) {
-    _orderService.addOrders(productUid, userUid);
+  void addOrder(ProductModel producModel, String userUid, String doc) {
+    _orderService.addOrders(producModel, userUid, doc);
   }
 }
