@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "708216767333",
+    "project_id": "household-appliances-3c146",
+    "storage_bucket": "household-appliances-3c146.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708216767333:android:77be785ff51b878723578c",
+        "android_client_info": {
+          "package_name": "com.example.online_shop_animation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFYMH9KC7IIb-vI0G44bbZbaz3fCeKdRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

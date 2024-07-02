@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:online_shop_animation/controller/product_controller.dart';
 import 'package:online_shop_animation/models/product_model.dart';
-import 'package:online_shop_animation/views/screens/room_page.dart';
+import 'package:online_shop_animation/views/screens/cart_screen.dart';
+import 'package:online_shop_animation/views/screens/home_screen/room_page.dart';
+import 'package:online_shop_animation/views/screens/profile_screen.dart';
 import 'package:online_shop_animation/views/widgets/product_count.dart';
 import 'package:online_shop_animation/views/widgets/product_grid.dart';
 import 'package:online_shop_animation/views/widgets/product_item.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -41,22 +44,39 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(12.0),
           child: Image.asset("assets/icons/drawer.png"),
         ),
-        actions: const [
-          Icon(CupertinoIcons.bell),
-          Gap(10),
-          Icon(CupertinoIcons.search),
-          Gap(10),
-          CircleAvatar(
-            radius: 15,
-            backgroundImage: AssetImage("assets/images/person.png"),
+        actions: [
+          const Icon(CupertinoIcons.bell),
+          const Gap(10),
+          const Icon(CupertinoIcons.search),
+          const Gap(10),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ),
+              );
+            },
+            child: const CircleAvatar(
+              radius: 15,
+              backgroundImage: AssetImage("assets/images/person.png"),
+            ),
           ),
-          Gap(10),
+          const Gap(10),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
         backgroundColor: const Color(0xff6D8D54),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CartScreen(),
+            ),
+          );
+        },
         child: const Icon(
           Icons.shopping_bag_outlined,
           color: Colors.white,
